@@ -7,5 +7,6 @@ class ListaFactoriales {
         val objFactorial: Factorial = new Factorial()
         //Complete el código
         throw new UnsupportedOperationException("No implementado aún")
+        return listaFactoriales
     }
 }
