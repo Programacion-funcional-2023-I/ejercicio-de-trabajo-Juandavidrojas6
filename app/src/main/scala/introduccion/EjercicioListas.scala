@@ -14,8 +14,21 @@ class EjercicioListas {
   def repetirListas(lista: List[Int], n: Int): List[List[Int]] = {
     var listaRepetida : List[List[Int]] = List()
     //Complete el código
-    throw new UnsupportedOperationException("No implementado aún")
-  }
+    if (n>=0) {
+      var listaInterna = List()
+      for (elemento <- lista){
+        var listaInterna: List[Int] = List()
+        for(i <- 1 to n){
+          listaInterna = listaInterna :+ elemento
+        }
+        listaRepetida = listaRepetida :+ listaInterna
+      }
+      return listaRepetida
+    }
+    else {
+      throw new IllegalArgumentException("n debe ser positivo")
+    }
+}
   /*
   * Punto 3: Filtrar listas
   * @param criterioIn Criterio de filtrado que puede ser "mayor", "menor", "mayoroigual", "igual", "diferente" o "menoroigual"
@@ -29,6 +42,46 @@ class EjercicioListas {
     var criterio : String = criterioIn.toLowerCase()
     var listaFiltrada : List[Int] = List()
     //Complete el código
-    throw new UnsupportedOperationException("No implementado aún")
+    var funcion = (x:Int, y:Int) => x>y
+
+    if (criterio == "mayor") {
+      funcion = (x: Int, y: Int) => x > y
+    }
+    else{
+      if(criterio == "menor"){
+        funcion = (x: Int, y: Int) => x < y
+      }
+      else{
+        if (criterio == "mayoroigual") {
+          funcion = (x: Int, y: Int) => x >= y
+        }
+        else {
+          if (criterio == "menoroigual") {
+            funcion = (x: Int, y: Int) => x <= y
+          }
+          else {
+            if (criterio == "igual") {
+              funcion = (x: Int, y: Int) => x == y
+            }
+            else {
+              if (criterio == "diferente") {
+                funcion = (x: Int, y: Int) => x != y
+              }
+              else {
+                throw new IllegalArgumentException("El criterio no es válido")
+              }
+            }
+          }
+        }
+      }
+        }
+    for (elm <- lista) {
+      if (funcion(elm, n)) {
+        listaFiltrada = listaFiltrada :+ elm
+      }
+    }
+    return listaFiltrada
   }
 }
+
+
